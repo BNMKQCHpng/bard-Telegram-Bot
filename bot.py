@@ -185,10 +185,10 @@ async def recv_msg(update: Update, context: ContextTypes.DEFAULT_TYPE):
             [
                 [
                     InlineKeyboardButton(
-                        text="📝 View other drafts",
+                        text="Regenerate",
                         callback_data=f"{message.message_id}",
                     ),
-                    InlineKeyboardButton(text="🔍 Google it", url=search_url),
+                    InlineKeyboardButton(text="Поиск в интеренете", url=search_url),
                 ]
             ]
         )
@@ -334,8 +334,6 @@ async def start_bot(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "• /id to get your chat identifier",
         "• /reset to reset the chat history",
         "• /retry to regenerate the answer",
-        "• /seg to send message in segments",
-        "• /mode to switch between Claude & Bard",
         "• /settings to show Claude & Bard settings",
     ]
     print(f"[i] {update.effective_user.username} started the bot")
@@ -359,10 +357,6 @@ async def post_init(application: Application):
         [
             BotCommand("/reset", "Reset the chat history"),
             BotCommand("/retry", "Regenerate the answer"),
-            BotCommand("/seg", "Send message in segments"),
-            BotCommand("/mode", "Switch between Claude & Bard"),
-            BotCommand("/settings", "Show Claude & Bard settings"),
-            BotCommand("/help", "Get help message"),
         ]
     )
 
