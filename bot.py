@@ -185,10 +185,10 @@ async def recv_msg(update: Update, context: ContextTypes.DEFAULT_TYPE):
             [
                 [
                     InlineKeyboardButton(
-                        text="📝 View other drafts",
+                        text="Напиши по другому",
                         callback_data=f"{message.message_id}",
                     ),
-                    InlineKeyboardButton(text="🔍 Google it", url=search_url),
+                    InlineKeyboardButton(text="Искать в интеренете", url=search_url),
                 ]
             ]
         )
@@ -328,15 +328,13 @@ async def change_cutoff(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def start_bot(update: Update, context: ContextTypes.DEFAULT_TYPE):
     welcome_strs = [
-        "Welcome to <b>Claude & Bard Telegram Bot</b>",
+        "Добро пожаловать <b>в Техноторг бот</b>",
         "",
-        "Commands:",
-        "• /id to get your chat identifier",
-        "• /reset to reset the chat history",
-        "• /retry to regenerate the answer",
-        "• /seg to send message in segments",
-        "• /mode to switch between Claude & Bard",
-        "• /settings to show Claude & Bard settings",
+        "Мы умеем",
+        "• Рассшифровывать технички, простой командой, найди мне...",
+        "• Искать глубинную информацию о товаре",
+        "• Быть приятным собеседником",
+        "• Даже шутить могу",
     ]
     print(f"[i] {update.effective_user.username} started the bot")
     await update.message.reply_text("\n".join(welcome_strs), parse_mode=ParseMode.HTML)
@@ -383,12 +381,7 @@ def run_bot():
     handler_list = [
         CommandHandler("id", send_id),
         CommandHandler("start", start_bot),
-        CommandHandler("help", start_bot),
         CommandHandler("reset", reset_chat, user_filter),
-        CommandHandler("settings", show_settings, user_filter),
-        CommandHandler("mode", change_mode, user_filter),
-        CommandHandler("model", change_model, user_filter),
-        CommandHandler("temp", change_temperature, user_filter),
         CommandHandler("cutoff", change_cutoff, user_filter),
         MessageHandler(user_filter & msg_filter, recv_msg),
         CallbackQueryHandler(view_other_drafts),
