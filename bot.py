@@ -355,12 +355,8 @@ async def error_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def post_init(application: Application):
     await application.bot.set_my_commands(
         [
-            BotCommand("/reset", "Reset the chat history"),
-            BotCommand("/retry", "Regenerate the answer"),
-            BotCommand("/seg", "Send message in segments"),
-            BotCommand("/mode", "Switch between Claude & Bard"),
-            BotCommand("/settings", "Show Claude & Bard settings"),
-            BotCommand("/help", "Get help message"),
+            BotCommand("/reset", "Очистка истории"),
+            BotCommand("/retry", "Переформулировка последнего вопроса"),
         ]
     )
 
