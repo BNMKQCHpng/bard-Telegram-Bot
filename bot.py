@@ -19,7 +19,7 @@ from telegram.ext import (
     filters,
 )
 
-from config import bot_token, default_mode, single_mode, user_ids
+from config import bot_token, default_mode, single_mode
 from utils import Session
 
 
@@ -371,20 +371,19 @@ def run_bot():
         .build()
     )
 
-    user_filter = filters.Chat(chat_id=user_ids)
     msg_filter = filters.TEXT
 
     handler_list = [
         CommandHandler("id", send_id),
         CommandHandler("start", start_bot),
         CommandHandler("help", start_bot),
-        CommandHandler("reset", reset_chat, user_filter),
-        CommandHandler("settings", show_settings, user_filter),
-        CommandHandler("mode", change_mode, user_filter),
-        CommandHandler("model", change_model, user_filter),
-        CommandHandler("temp", change_temperature, user_filter),
-        CommandHandler("cutoff", change_cutoff, user_filter),
-        MessageHandler(user_filter & msg_filter, recv_msg),
+        CommandHandler("reset", reset_chat),
+        CommandHandler("settings", show_settings),
+        CommandHandler("mode", change_mode),
+        CommandHandler("model", change_model),
+        CommandHandler("temp", change_temperature),
+        CommandHandler("cutoff", change_cutoff),
+        MessageHandler(msg_filter, recv_msg),
         CallbackQueryHandler(view_other_drafts),
     ]
     for handler in handler_list:
